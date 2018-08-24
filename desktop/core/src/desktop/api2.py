@@ -148,7 +148,7 @@ def get_context_computes(request, interface):
           'status': cluster.get('status'),
           'namespace': cluster.get('namespaceCrn', cluster.get('crn')),
           'type': 'altus-adb'
-        } for cluster in AnalyticDbApi(request.user).list_clusters()['clusters'] if cluster.get('status') == 'CREATED']
+        } for cluster in AnalyticDbApi(request.user).list_clusters()['clusters'] if cluster.get('status') == 'CREATED' and cluster.get('cdhVersion') >= 'CDH515']
       )
 
   if interface == 'oozie' or interface == 'jobs' or interface == 'spark2':
